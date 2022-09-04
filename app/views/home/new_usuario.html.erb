@@ -1,0 +1,28 @@
+<h1>Novo Usuário</h1>
+
+<%= form_for(@user, url: criar_usuario_url) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="row">
+    <div class="form-group col-6">
+        <%= f.label :password, "Senha" %>
+        <%= f.password_field :password, class: "form-control" %>
+    </div>
+    <div class="form-group col-6">
+        <%= f.label :password_confirmation, "Confirmar senha" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+  </div>
+   <div class="form-check mt-2">
+        <%= f.check_box :admin, id: :usuario_administrador, class: "form-check-input" %>
+        <%= f.label :admin, class: "form-check-label", for: "usuario_administrador" %>
+    </div>
+
+  <div class="form-group">
+    <%= f.submit "Salvar", class: "btn btn-primary mt-3 " %>
+  </div>
+<% end %>
+

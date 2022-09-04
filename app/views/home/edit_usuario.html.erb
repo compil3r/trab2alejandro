@@ -1,0 +1,46 @@
+<h1>Editar Usuário</h1>
+
+<%= form_for(@user,  url: atualizar_usuario_url(@user), html: { method: :put }) do |form| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+    
+    <div class="field">
+        <%= form.label :email %>
+        <%= form.email_field :email, id: :usuario_email, class: "form-control" %>
+    </div>
+    <div class="row">
+    
+
+        <div class="field col-6">
+            <%= form.label :password, "Senha" %>
+            <%= form.password_field :password, id: :usuario_password, class: "form-control" %>
+        </div>
+        
+        <div class="field col-6">
+            <%= form.label :password_confirmation, "Confirmar a senha" %>
+            <%= form.password_field :password_confirmation, id: :usuario_password_confirmation, class: "form-control" %>
+        </div>
+        <span class="text-muted">Preencha somente se quiser atualizar a senha</span>
+    </div>
+
+    <%# administrador true or false %>
+    <div class="form-check mt-2">
+        <%= form.check_box :admin, id: :usuario_administrador, class: "form-check-input" %>
+        <%= form.label :admin, class: "form-check-label", for: "usuario_administrador" %>
+    </div>
+    
+    <div class="actions">
+        <%= form.submit "Atualizar Usuário", class: "btn btn-primary mt-3 mb-3" %>
+    </div>
+    <% end %>
+
+<%= link_to 'Voltar', usuarios_url, class: "link-secondary" %>

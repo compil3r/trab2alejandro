@@ -1,0 +1,55 @@
+<%= form_with(model: pedido) do |form| %>
+  <% if pedido.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h5>Verifique os erros abaixo:</h5>
+
+      <ul>
+        <% pedido.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="field col-8">
+    <%= form.label :cliente %>
+    <%# select with @clientes %>
+    <%= form.select :cliente_id, options_for_select(Cliente.all.map { |c| [c.nome, c.id] }, pedido.cliente_id), {}, { class: "form-control" } %>
+  </div>
+
+  <div class="field col-4">
+    <%= form.label :data %>
+    <%= form.date_field :data, class: "form-control" %>
+  </div>
+</div>
+<%# multiple select for @produtos %>
+<div class="row mt-2">
+  <div class="field col-12">
+   
+    <%= fields_for :pedido_produtos do |pp| %>
+    <%= pp.label :produtos %>
+    
+    <small class="text-muted">Selecione os produtos que deseja adicionar ao pedido</small>
+    <%# if @pedido.pedido_produtos has itens make selected collection %>
+    <% if pedido.pedido_produtos.any? %>
+    <%   selected = pedido.pedido_produtos.map { |pp| pp.produto_id } %>
+    <% else %>
+    <%   selected = [] %>
+    <% end %>
+    <%= pp.select :produto_id, options_for_select(Produto.all.map { |p| [p.nome, p.id] }, pedido.pedido_produtos.map { |pp| pp.produto_id }), {}, { class: "form-control", multiple: true } %>
+    <% end %>
+   
+  </div>
+</div>
+
+  <div class="field">
+    <%= form.label :observacoes %>
+    <%= form.text_field :observacoes, class: "form-control" %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit "Salvar", class: "btn btn-success mt-4 mb-3" %>
+  </div>
+<% end %>

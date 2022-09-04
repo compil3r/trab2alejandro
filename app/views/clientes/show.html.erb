@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @cliente.nome %>
+</p>
+
+<p>
+  <strong>Data nascimento:</strong>
+  <%= l @cliente.data_nascimento, format: :long%>
+</p>
+
+<p>
+  <strong>Profissao:</strong>
+  <%= @cliente.profissao %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @cliente.email %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @cliente.sexo %>
+</p>
+<%# todos os dados de endereço %>
+
+<p>
+  <strong>Endereco:</strong>
+  <%= @cliente.endereco.rua %>, <%= @cliente.endereco.numero %>
+</p>
+
+<p>
+  <strong>Bairro:</strong>
+  <%= @cliente.endereco.bairro %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @cliente.endereco.cidade %>
+
+  <strong>Estado:</strong>
+  <%= @cliente.endereco.estado %>
+</p>
+
+
+<% if current_user.admin %>
+<%= link_to 'Editar', edit_cliente_path(@cliente) %> |
+<%= link_to 'Voltar', clientes_path %>
+<%else%>
+<%= link_to 'Voltar', clientes_path %>
+<%end%>

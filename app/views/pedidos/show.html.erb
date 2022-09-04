@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @pedido.cliente.nome %>
+</p>
+
+<p>
+  <strong>Observacoes:</strong>
+  <%= @pedido.observacoes %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= l @pedido.data, format: :long %>
+</p>
+
+<h5>Itens do Pedido</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    <% @pedido.pedido_produtos.each do |item| %>
+      <tr>
+        <td><%= item.produto.nome %></td>
+        <td><%= number_to_currency item.produto.valor%></td>
+      </tr>
+    <% end %>
+    <%# total %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong><%= number_to_currency @pedido.total %></strong></td>
+  </tbody>
+</table>
+<% if current_user.admin %>
+<%= link_to 'Editar', edit_pedido_path(@pedido) %> |
+<%= link_to 'Voltar', pedidos_path %>
+<%else%>
+<%= link_to 'Voltar', pedidos_path %>
+<%end%>

@@ -1,0 +1,35 @@
+<%= form_with(model: produto) do |form| %>
+  <% if produto.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h5>Verifique os erros abaixo:</h5>
+
+      <ul>
+        <% produto.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, class: "form-control", :required => true%>
+  </div>
+  <div class="row">
+  <div class="field col-6">
+    <%= form.label :valor %>
+  
+    <%= form.number_field :valor, class: "form-control", :required => true, id: "money", value: @produto.valor ? '%.2f' % @produto.valor : nil, min: 0, step: 0.01, placeholder: "00,00"%>
+  </div>
+
+  <div class="field col-6">
+    <%= form.label :descricao %>
+    <%= form.text_field :descricao, class: "form-control", :required => true  %>
+  </div>
+
+  </div>
+
+  <div class="actions mt-4 mb-3">
+    <%= form.submit "Salvar", class: "btn btn-success"%>
+  </div>
+<% end %>

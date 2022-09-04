@@ -1,0 +1,23 @@
+<h1>Bem vindo ao sistema de pedidos</h1>
+
+<p>
+    Este é um sistema de pedidos de produtos. 
+    <br>
+    Se você for um administrador, você pode criar, editar e excluir produtos, clientes e pedidos.
+    <br>
+    Se você for um entregador, você pode visualizar pedidos, clientes e produtos.
+</p>
+
+<%# criar novo pedido! %>
+<%if user_signed_in?  %>
+<% if  current_user.admin? %>
+  <%= link_to 'Novo Pedido', new_pedido_path, class: "btn btn-primary" %>
+<%else%>
+<%# visualizar pedidos %>
+    <%= link_to 'Visualizar pedidos', pedidos_path, class: "btn btn-primary" %>
+<% end %>
+<%else%>
+<%# fazer login %>
+    <%= link_to 'Fazer login', new_user_session_path, class: "btn btn-primary" %>
+<% end %>
+

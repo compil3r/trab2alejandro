@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  data_nascimento: 2022-09-02
+  profissao: MyString
+  email: mystring@email.com
+  sexo: MyString
+  endereco: one
+
+two:
+  nome: MyString
+  data_nascimento: 2022-09-02
+  profissao: MyString
+  email: mystring@email.com
+  sexo: MyString
+  endereco: two

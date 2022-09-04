@@ -1,0 +1,24 @@
+
+<p>
+  <strong>Nome:</strong>
+  <%= @produto.nome %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%# show in brazilian format %>
+  <%= number_to_currency @produto.valor %>
+  
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @produto.descricao %>
+</p>
+
+<% if current_user.admin %>
+<%= link_to 'Editar', edit_produto_path(@produto) %> |
+<%= link_to 'Voltar', produtos_path %>
+<%else%>
+<%= link_to 'Voltar', produtos_path %>
+<%end%>

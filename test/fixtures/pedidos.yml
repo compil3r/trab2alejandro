@@ -1,0 +1,14 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  observacoes: MyString
+  data: 2022-09-03
+  
+
+two:
+  cliente: two
+  observacoes: MyString
+  data: 2022-09-03
+  
+

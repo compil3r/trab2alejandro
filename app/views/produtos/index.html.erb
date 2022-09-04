@@ -1,0 +1,33 @@
+
+<h1>Produtos</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Valor</th>
+      <th>Descricao</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produtos.each do |produto| %>
+      <tr>
+        <td><%= produto.nome %></td>
+        <td><%=  number_to_currency  produto.valor %></td>
+        <td><%= produto.descricao %></td>
+        <td><%= link_to 'Detalhes', produto, class: "btn btn-outline-success btn-sm" %>
+        <% if current_user.admin %>
+        <%= link_to 'Editar', edit_produto_path(produto),  class: "btn btn-outline-secondary btn-sm"%>
+        <%= link_to 'Apagar', produto, method: :delete, data: { confirm: 'Você tem certeza?' },  class: "btn btn-outline-danger btn-sm" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user.admin %>
+<%= link_to 'Novo Produto', new_produto_path, class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,43 @@
+
+
+<h1>Clientes</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Data nascimento</th>
+      <th>Profissão</th>
+      <th>Email</th>
+      <th>Sexo</th>
+      <th>Cidade</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clientes.each do |cliente| %>
+      <tr>
+        <td><%= cliente.nome %></td>
+        
+        <td><%= l cliente.data_nascimento %></td>
+        
+        <td><%= cliente.profissao %></td>
+        <td><%= cliente.email %></td>
+        <td><%= cliente.sexo %></td>
+        <td><%= cliente.endereco.cidade %> - <%=cliente.endereco.estado%></td>
+        <td><%= link_to 'Detalhes', cliente, class: "btn btn-outline-success btn-sm" %>
+        <% if current_user.admin %>
+        <%= link_to 'Editar', edit_cliente_path(cliente), class: "btn btn-outline-secondary btn-sm" %>
+        <%= link_to 'Remover', cliente, method: :delete, class: "btn btn-outline-danger btn-sm", data: { confirm: 'Você tem certeza?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user.admin %>
+<%= link_to 'Novo Cliente', new_cliente_path, class: "btn btn-primary" %>
+<% end %>
